@@ -27,13 +27,13 @@
       }
     }
 
-    data "oci_identity_availability_domains" "this" {
-      compartment_id = oci_identity_compartment.dev-compartment.id
-    }
+    #data "oci_identity_availability_domains" "this" {
+    #  compartment_id = oci_identity_compartment.dev-compartment.id
+    #}
 
     resource "oci_core_subnet" "this" {
       count               = length(data.oci_identity_availability_domains.this.availability_domains)
-      availability_domain = lookup(data.oci_identity_availability_domains.this.availability_domains[count.index], "name")
+      #availability_domain = 1
       cidr_block          = cidrsubnet(var.vcn_cidr, ceil(log(length(data.oci_identity_availability_domains.this.availability_domains) * 2, 2)), count.index)
       display_name        = "Default Subnet ${lookup(data.oci_identity_availability_domains.this.availability_domains[count.index], "name")}"
       dns_label           = "${var.subnet_dns_label}${count.index + 1}"

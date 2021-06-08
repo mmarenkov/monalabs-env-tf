@@ -26,3 +26,7 @@ variable "subnet_dns_label" {
 variable "compartment_name" {
     default = "mona-dev"
 }
+
+variable "compartment_description" {
+    default = "testing"
+}
