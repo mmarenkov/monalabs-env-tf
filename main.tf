@@ -9,12 +9,12 @@
     resource oci_core_vcn this {
       dns_label      = var.vcn_dns_label
       cidr_block     = var.vcn_cidr
-      compartment_id = var.compartment_ocid
+      compartment_id = oci_identity_compartment.dev-compartment.id
       display_name   = var.vcn_display_name
     }
     
     resource oci_core_internet_gateway this {
-      compartment_id = var.compartment_ocid
+      compartment_id = oci_identity_compartment.dev-compartment.id
       vcn_id         = oci_core_vcn.this.id
     }    
 
@@ -28,7 +28,7 @@
     }
 
     data "oci_identity_availability_domains" "this" {
-      compartment_id = var.compartment_ocid
+      compartment_id = oci_identity_compartment.dev-compartment.id
     }
 
     resource "oci_core_subnet" "this" {
