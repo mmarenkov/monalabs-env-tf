@@ -39,6 +39,6 @@
       dns_label           = "${var.subnet_dns_label}${count.index + 1}"
       compartment_id      = var.compartment_ocid
       vcn_id              = oci_core_vcn.this.id
-      security_list_ids   = ["${oci_core_vcn.this.default_security_list_id}"]
+      security_list_ids   = [oci_core_vcn.this.default_security_list_id]
     }
     
