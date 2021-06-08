@@ -27,9 +27,9 @@
       }
     }
 
-    #data "oci_identity_availability_domains" "this" {
-    #  compartment_id = oci_identity_compartment.dev-compartment.id
-    #}
+    data "oci_identity_availability_domains" "this" {
+      compartment_id = oci_identity_compartment.dev-compartment.id
+    }
 
     resource "oci_core_subnet" "this" {
       count               = length(data.oci_identity_availability_domains.this.availability_domains)
